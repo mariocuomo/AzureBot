@@ -26,7 +26,7 @@ public class BotManager : MonoBehaviour
 
     async System.Threading.Tasks.Task StartBotAsync()
     {
-        client = new DirectLineClient("//YOUR DIRECT LINE SECRET KEY");
+        client = new DirectLineClient("//your direct line key");
         conversation = await client.Conversations.StartConversationAsync();
     }
 
@@ -35,21 +35,23 @@ public class BotManager : MonoBehaviour
         request = GameObject.Find("InputFieldText").GetComponent<Text>().text;
         GameObject.Find("BotLogo").GetComponent<Animation>().Play();
         inviaAsync();
-
     }
 
     public async System.Threading.Tasks.Task inviaAsync()
     {
         Activity userMessage = new Activity
         {
-            From = new ChannelAccount("unityChannel"),
+            From = new ChannelAccount("your channel name"),
             Text = request,
             Type = ActivityTypes.Message
         };
 
         await client.Conversations.PostActivityAsync(conversation.ConversationId, userMessage);
         string watermark = null;
+
+
         var activitySet = await client.Conversations.GetActivitiesAsync(conversation.ConversationId, watermark);
+
         watermark = activitySet?.Watermark;
 
         var activities = from x in activitySet.Activities
