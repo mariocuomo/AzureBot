@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 1970687872}
   - component: {fileID: 1970687871}
   m_Layer: 5
-  m_Name: Azure Logo
+  m_Name: AzureLogo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
